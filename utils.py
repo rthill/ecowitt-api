@@ -1,7 +1,5 @@
 from datetime import datetime
 
-from influxdb import InfluxDBClient
-
 
 def convert_mph_kmh(val):
     """Convert mp/h into km/h"""
@@ -23,18 +21,18 @@ def convert_dt_ts(val):
     return dt.strftime("%s")
 
 
-def send_to_influxdb(fields, host="127.0.0.1", port=8086, db="weather"):
-    req = {"measurement": "weather", "tags": {}, "fields": {}}
-
-    for k, v in fields.items():
-        if v is not None:
-            req["fields"][k] = v
-
-    reqs = []
-    reqs.append(req)
-
-    try:
-        client = InfluxDBClient(host=host, port=port, database=db)
-        client.write_points(reqs)
-    except BaseException:
-        pass
+#def send_to_influxdb(fields, host="127.0.0.1", port=8086, db="weather"):
+#    req = {"measurement": "weather", "tags": {}, "fields": {}}
+#
+#    for k, v in fields.items():
+#        if v is not None:
+#            req["fields"][k] = v
+#
+#    reqs = []
+#    reqs.append(req)
+#
+#    try:
+#        client = InfluxDBClient(host=host, port=port, database=db)
+#        client.write_points(reqs)
+#    except BaseException:
+#        pass
